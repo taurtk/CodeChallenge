@@ -1,0 +1,60 @@
+# coding: utf-8
+# Your code here!
+class Node:
+    def __init__(self,value,n=None):
+        self.value=value
+        self.next=n
+class LinkedList:
+    
+    def __init__(self):
+            self.head=None
+            self.size=0
+    def length(self):
+            return self.size
+    def isempty(self):
+            return self.size==0
+    
+    def addhead(self,value):
+        self.head=self.Node(value, self.head)
+        self.size+=1
+    def addTail(self,value):
+        newnode=self.Node(value,None)
+        curr=self.head
+        if self.head==None:
+            self.head=newnode
+        while curr.next!=None:
+            curr=curr.next
+        curr.next=newnode
+        self.size+=1
+    def sortedinserted(self,value):
+        newnode=self.Node(value,None)
+        curr=self.head
+        if curr == None or curr.value>value:
+            newnode.next=self.head
+            self.head=newnode
+            return
+        while curr.next!=None and curr.next.value<value:
+            curr=curr.next
+        newnode.next=curr.next
+        curr.next=newnode
+    def ispresent(self,data):
+        temp=self.head
+        while temp!=None:
+            if temp.value==data:
+                return True
+            temp=temp.next
+        return False
+    def printlist(self):
+        temp=self.head
+        while(temp!=None):
+            print(temp.value)
+            temp=temp.next
+        print(" ")
+        
+ll=LinkedList()
+ll.addhead(1)
+ll.sortedinserted(2)
+ll.sortedinserted(3)
+ll.sortedinserted(4)
+ll.sortedinserted(5)
+ll.printlist()
